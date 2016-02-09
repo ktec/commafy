@@ -12,4 +12,12 @@ describe Commafy::Parser do
       expect(result).to eq('1,234,567')
     end
   end
+
+  context '12345678/4' do
+    it 'returns 1,234,5678' do
+      result = described_class.parse(12345678, 4)
+
+      expect(result).to eq('1234,5678')
+    end
+  end
 end

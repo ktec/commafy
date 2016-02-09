@@ -1,28 +1,45 @@
-== README
+== Commafy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Write a Rails application. The application has a single endpoint of form:
 
-Things you may want to cover:
+GET /commafy/n​/x
 
-* Ruby version
+Where n​ can be any number and x ​is an integer between 2 and 4 inclusive. When called with valid values for n​and x ​the app is going to return JSON that looks like this:
 
-* System dependencies
+{
+  "original": n​,
+  "commafied": A
+}
 
-* Configuration
+A​ is a string, formed by adding commas, at intervals of x​, to the string representation of n​.
 
-* Database creation
+Commas are added starting from the right of the string and moving left. If there is a decimal point, only add commas to the stuff to the left of the decimal point. For example:
 
-* Database initialization
+GET /commafy/1234567/3
 
-* How to run the test suite
+Should return:
 
-* Services (job queues, cache servers, search engines, etc.)
+{
+  "original": 1234567,
+  "commafied": "1,234,567"
+}
 
-* Deployment instructions
+GET /commafy/12345678/4
 
-* ...
+Should return:
 
+{
+  "original": 12345678,
+  "commafied": "1234,5678"
+}
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+GET /commafy/123456.789/2
+
+Should return:
+
+{
+  "original": 123456.789,
+  "commafied": "12,34,56.789"
+}
+
+The only other requirement is that the app should have decent tests.
