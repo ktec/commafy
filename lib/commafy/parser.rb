@@ -13,4 +13,12 @@ module Parser
       .compact                # remove any nils
       .join('.')              # join the dots
   end
+
+  def self.numberize_string(number_str)
+    if number_str.include?('.')
+      number_str.to_f
+    else
+      number_str.to_i
+    end
+  end
 end

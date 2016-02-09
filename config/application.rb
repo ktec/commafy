@@ -17,10 +17,17 @@ Bundler.require(*Rails.groups)
 
 module Commafy
   class Application < Rails::Application
-    config.autoload_paths += %W(#{config.root}/lib/commafy)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # Auto-load API and its subdirectories
+    config.paths.add 'app/api', glob: '**/*.rb'
+    config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
+
+    # Auto-load Commafy library
+    config.paths.add 'lib/commafy', glob: '**/*.rb'
+    config.autoload_paths += Dir["#{Rails.root}/lib/commafy"]
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

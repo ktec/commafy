@@ -32,6 +32,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Grape is a REST-like API micro-framework for Ruby.
+# Keep our API's and rails separate and focussed on doing one job well.
+gem 'grape'
+# This gem disables the security feature of strong_params at the model layer,
+# allowing you the use of Grape's own params validation instead.
+gem 'hashie-forbidden_attributes'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
