@@ -20,4 +20,12 @@ describe Commafy::Parser do
       expect(result).to eq('1234,5678')
     end
   end
+
+  context '123456.789/2' do
+    it 'returns 12,34,56.789' do
+      result = described_class.parse(123456.789, 2)
+
+      expect(result).to eq('12,34,56.789')
+    end
+  end
 end
